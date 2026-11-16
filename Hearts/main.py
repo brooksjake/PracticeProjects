@@ -2,7 +2,7 @@ import json
 from Card import Card
 
 
-with open("PythonHearts/deck_52_minimal.json", "r") as file:
+with open("Hearts/deck_52_minimal.json", "r") as file:
     full_card_data = json.load(file)
 
 deck = []
