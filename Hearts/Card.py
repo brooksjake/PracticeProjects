@@ -28,4 +28,14 @@ class Card():
         if self.rank == "Q" and self.suit == "spade":
             self.pointvalue = 13
 
+# import json
+# class Deck():
+#     def __init__():
+#         with open("Hearts/deck_52_minimal.json", "r") as file:
+#             full_card_data = json.load(file)
+#         deck = []
+#         for card in full_card_data:
+#             deck.appedn(Card(card["deckvalue"], card["suit"]))
+#         pass
+    
             
