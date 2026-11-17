@@ -3,12 +3,11 @@ from Card import Card, Deck
 from Round import Round
 import random
 
-class Game():
+class Match():
     def __init__(self, player_A: Player, player_B: Player, player_C: Player, player_D: Player) -> None:
         self.playerlist = [player_A, player_B, player_C, player_D]
         self.deck = Deck()
         self.current_turn_player_index = 0
-        self.rounds: list[Round] = []
         self.hearts_broken: bool = False
         
     
@@ -30,14 +29,27 @@ class Game():
     def run(self) -> None:
         self.deal_cards()
 
-        for i in range(13):
-            round = Round(self.playerlist, self.current_turn_player_index, self.hearts_broken)
-            self.rounds.append(round)
-
+        # run 13 rounds
+        for round_number in range(13):
+            round = Round(self.playerlist, self.current_turn_player_index, self.hearts_broken, round_number)
             round.run()
-        
+            self.hearts_broken = round.get_hearts_broken()
 
-    pass
+        self.apply_game_points()
+
+    def apply_game_points(self) -> None:
+        
+        if self.moon_shot_by() is not None:
+            self.moon_shot_by.game_score -= 26
+        else:
+            for player in self.playerlist:
+                player.game_score += player.match_score
+                player.match_score = 0
+
+    def moon_shot_by(self) -> Player:
+        for player in self.playerlist:
+            if player.match_score > 25: return player
+        return None
 
 
             
