@@ -7,7 +7,7 @@ class Player:
         self.score = 0
         self.is_round_starter = False
         
-    def TakeTurn(played_cards: list[Card]) -> Card:
+    def take_turn(self, played_cards: list[Card]) -> Card:
         
         # pick a card to play in the round,
         # depending on what's already been played
